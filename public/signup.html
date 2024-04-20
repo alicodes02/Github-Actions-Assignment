@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="signup.css">
+    <title>Register</title>
+</head>
+<body>
+
+    <div class="main">
+
+    <form action="/signup" method="POST" id="signup-form">
+
+        <div class="form">
+            <div class="title">Welcome</div>
+            <div class="subtitle">Let's create your account!</div>
+      
+            <div class="input-container ic1">
+              <input placeholder="user name" type="text" class="input" id="username" name = "userName" required>
+              <div class="cut"></div>
+              <!-- <label class="iLabel" for="username">User Name</label> -->
+            </div>
+      
+            <div class="input-container ic2">
+              <input placeholder="email" type="email" class="input" id="email" name = "email" required>
+              <div class="cut"></div>
+              <!-- <label class="iLabel" for="email">Email</label> -->
+            </div>
+            <div class="input-container ic2">
+              <input placeholder="password" type="text" class="input" id="password" name = "password" required>
+              <div class="cut cut-short"></div>
+            </div>
+            <button class="submit" type="submit">submit</button>
+          </div>
+         </div>
+    </form>
+
+</body>
+</html>
