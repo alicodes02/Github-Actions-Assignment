@@ -40,7 +40,7 @@ app.get('/test', (req, res) => {
 app.use('/', authRoutes);
 app.use('/', blogRoutes);
 app.use('/', userInteractionRoutes);
-app.use('/', adminRoutes);
+app.use('/', adminRoutes)
 
 
   
