@@ -1,18 +1,22 @@
-const chai = require('chai');
-const chaiHttp = require('chai-http');
-const app = require('../app'); // assuming your Express app is defined in app.js
-const expect = chai.expect;
+const { expect } = require('chai');
+const { echoSomething } = require('../utils/helpers'); // Assuming your echo function is defined in a separate file
 
-chai.use(chaiHttp);
+describe('echoSomething function', () => {
+  it('should echo "Hello, world!" to the console', () => {
+    // Capture console.log output
+    let consoleOutput = '';
+    const mockedConsoleLog = (output) => {
+      consoleOutput += output;
+    };
+    console.log = mockedConsoleLog;
 
-describe('GET /test', () => {
-  it('should return status 200 and message "Api is live and running"', (done) => {
-    chai.request(app)
-      .get('/test')
-      .end((err, res) => {
-        expect(res).to.have.status(200);
-        expect(res.text).to.equal("Api is live and running");
-        done();
-      });
+    // Call the echo function
+    echoSomething();
+
+    // Restore console.log
+    console.log = console._log;
+
+    // Assert the output
+    expect(consoleOutput).to.equal('Hello, world!');
   });
 });
