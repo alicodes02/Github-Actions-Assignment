@@ -25,5 +25,8 @@ jobs:
       run: npm test
 
     - name: Start server
-      run: npm start
+      run: |
+        npm start &
+        sleep 3
+        kill %1 || true
     
