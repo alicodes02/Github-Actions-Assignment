@@ -32,6 +32,11 @@ mongoose.connect('mongodb://127.0.0.1/WebAssignment02', {
     console.log('Error Connecting Database');
 });
 
+app.get('/test', (req, res) => {
+
+    res.status(200).send("Api is live and running");
+});
+
 app.use('/', authRoutes);
 app.use('/', blogRoutes);
 app.use('/', userInteractionRoutes);
