@@ -13,20 +13,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Use Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '18'
+      - name: Build Docker image
+        run: docker build -t my-node-app .
 
-      - name: Install dependencies
-        run: npm install
+      # You may need additional steps here to push the Docker image to a container registry
 
-      - name: Build
-        run: npm run build  # Replace with your build command if different
+      - name: Extract build artifacts
+        run: |
+          docker run --rm my-node-app sh -c "cp -r /app /github/workspace"
 
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1
         with:
-          args: deploy --prod --dir=build  # Replace 'build' with the directory containing your build artifacts
+          args: deploy --prod --dir=app  # Replace 'app' with the directory containing your build artifacts
         env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN}}
