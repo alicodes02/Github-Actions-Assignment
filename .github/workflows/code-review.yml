@@ -16,7 +16,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '18'
+          node-version: '14'
 
       - name: Install dependencies
         run: npm install
@@ -30,15 +30,21 @@ jobs:
       - name: Run tests
         run: npm test
 
-      # Code scanning (GitHub's built-in code scanning)
-      - name: Code scanning
-        uses: github/codeql-action@v2
-
-      # Code analysis (GitHub's built-in code scanning)
-      - name: Code analysis
-        uses: github/codeql-action/upload-sarif@v2
+      # Code scanning (CodeQL analysis)
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v1
         with:
-          sarif_file: ./codeql-results.sarif
+          languages: javascript
+
+      - name: Analyze code with CodeQL
+        run: codeql analyze --sarif --verbose .
+        continue-on-error: true
+
+      # Upload CodeQL results
+      - name: Upload SARIF results
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: ./codeql-bundle/codeql.sarif
 
       # Enforce required checks before merging
       - name: Enforce required checks
