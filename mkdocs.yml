@@ -1,0 +1,10 @@
+site_name: My Documentation
+nav:
+  - Home: index.md
+  - About: about.md
+
+theme:
+  name: material
+
+plugins:
+  - search
