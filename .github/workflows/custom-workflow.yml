@@ -1,0 +1,13 @@
+name: Custom Workflow Integration
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  custom-task:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Message
+        run: echo "Running custom task..."
